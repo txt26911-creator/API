@@ -12,14 +12,16 @@ const JWT_SECRET = process.env.JWT
 app.use(cors());
 app.use(express.json())
 
-const db = mysql.createConnection({
-    host: process.env.HOST_MYSQL,
-    user: process.env.USER_MYSQL,
-    password: process.env.PASSWORD_MYSQL,
-    database: process.env.DATABASE_MYSQL,
-    port: process.env.PORT_MYSQL
+const db = mysql.createPool({
+  host: process.env.HOST_MYSQL,
+  user: process.env.USER_MYSQL,
+  password: process.env.PASSWORD_MYSQL,
+  database: process.env.DATABASE_MYSQL,
+  port: process.env.PORT_MYSQL,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
-
 
 
 app.post("/api/register", async (req, res) => {
