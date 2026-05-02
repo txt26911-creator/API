@@ -228,7 +228,7 @@ app.get("/api/usuarios", (req, res)=>{
 
 
 
-    db.query("SELECT id_usuario, rol, nombre, apellido, telefono FROM usuarios",
+    db.query("SELECT id_usuario, rol, nombre, apellido, usuario, telefono FROM usuarios",
         (err, result) => {
            if(err){
             console.log(err);
