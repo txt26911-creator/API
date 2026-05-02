@@ -31,8 +31,11 @@ db.getConnection((err, connection) => {
     connection.release();
   }
 });
-
-
+app.get("/", (req, res) => {
+  console.log("PING OK");
+  res.send("API viva");
+});
+/*
 app.post("/api/register", async (req, res) => {
   const { usuario, password, privilegio, nombre, apellido, telefono } = req.body
 
@@ -373,12 +376,12 @@ app.get("/api/ventas/ver/:idVenta", (req, res) => {
     });
   });
 });
-
+*/
 app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log("Servidor corriendo en puerto", process.env.PORT);
 })
 //api ventas
-
+/*
 app.post('/api/venta/registrar', (req, res) => {
 
   let { tipoDocumento, subTotal, igv, total, listaProductos, usuario } = req.body;
@@ -476,4 +479,4 @@ app.post('/api/venta/registrar', (req, res) => {
       }
     );
   });
-});
+});*/
