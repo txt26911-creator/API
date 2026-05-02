@@ -12,30 +12,16 @@ const JWT_SECRET = process.env.JWT
 app.use(cors());
 app.use(express.json())
 
-const db = mysql.createPool({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+const db = mysql.createConnection({
+    host: process.env.HOST_MYSQL,
+    user: process.env.USER_MYSQL,
+    password: process.env.PASSWORD_MYSQL,
+    database: process.env.DATABASE_MYSQL,
+    port: process.env.PORT_MYSQL
 });
 
-db.getConnection((err, connection) => {
-  if (err) {
-    console.error("Error conectando a MySQL:", err);
-  } else {
-    console.log("Conectado a MySQL");
-    connection.release();
-  }
-});
-app.get("/", (req, res) => {
-  console.log("PING OK");
-  res.send("API viva");
-});
-/*
+
+
 app.post("/api/register", async (req, res) => {
   const { usuario, password, privilegio, nombre, apellido, telefono } = req.body
 
@@ -376,12 +362,15 @@ app.get("/api/ventas/ver/:idVenta", (req, res) => {
     });
   });
 });
-*/
-app.listen(process.env.PORT, "0.0.0.0", () => {
-  console.log("Servidor corriendo en puerto", process.env.PORT);
+
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+    console.log(`Puerto 3001 a la escucha`)
 })
+
 //api ventas
-/*
+
 app.post('/api/venta/registrar', (req, res) => {
 
   let { tipoDocumento, subTotal, igv, total, listaProductos, usuario } = req.body;
@@ -479,4 +468,4 @@ app.post('/api/venta/registrar', (req, res) => {
       }
     );
   });
-});*/
+});
