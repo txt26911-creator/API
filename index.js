@@ -366,7 +366,7 @@ app.get("/api/ventas/ver/:idVenta", (req, res) => {
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-    console.log(`Puerto 3001 a la escucha`)
+    console.log(`Puerto ${PORT} a la escucha`)
 })
 
 //api ventas
