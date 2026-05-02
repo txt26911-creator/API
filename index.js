@@ -32,10 +32,6 @@ db.getConnection((err, connection) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("API funcionando");
-});
-
 
 app.post("/api/register", async (req, res) => {
   const { usuario, password, privilegio, nombre, apellido, telefono } = req.body
@@ -380,10 +376,9 @@ app.get("/api/ventas/ver/:idVenta", (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
-    console.log(`Puerto ${PORT} a la escucha`)
-})
-
+app.listen(process.env.PORT, "0.0.0.0", () => {
+  console.log("Servidor corriendo en puerto", process.env.PORT);
+});
 //api ventas
 
 app.post('/api/venta/registrar', (req, res) => {
