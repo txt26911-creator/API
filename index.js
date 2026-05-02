@@ -12,12 +12,15 @@ const JWT_SECRET = process.env.JWT
 app.use(cors());
 app.use(express.json())
 
-const db = mysql.createConnection({
-    host: process.env.HOST_MYSQL,
-    user: process.env.USER_MYSQL,
-    password: process.env.PASSWORD_MYSQL,
-    database: process.env.DATABASE_MYSQL,
-    port: process.env.PORT_MYSQL
+const db = mysql.createPool({
+  host: process.env.HOST_MYSQL,
+  user: process.env.USER_MYSQL,
+  password: process.env.PASSWORD_MYSQL,
+  database: process.env.DATABASE_MYSQL,
+  port: process.env.PORT_MYSQL,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 
@@ -363,9 +366,10 @@ app.get("/api/ventas/ver/:idVenta", (req, res) => {
   });
 });
 
+const PORT = process.env.PORT || 3001;
 
-app.listen(3001, () => {
-    console.log(`Puerto 3001 a la escucha`)
+app.listen(PORT, () => {
+    console.log(`Puerto ${PORT} a la escucha`)
 })
 
 //api ventas
