@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("OK");
+  res.send("OK FUNCIONANDO");
 });
 
-app.listen(3000, "0.0.0.0", () => {
-  console.log("RUNNING 3000");
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("RUNNING ON PORT:", PORT);
 });
