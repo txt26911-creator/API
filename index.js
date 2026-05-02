@@ -23,6 +23,14 @@ const db = mysql.createPool({
   queueLimit: 0
 });
 
+db.getConnection((err, connection) => {
+  if (err) {
+    console.error("Error conectando a MySQL:", err);
+  } else {
+    console.log("Conectado a MySQL");
+    connection.release();
+  }
+});
 
 
 app.post("/api/register", async (req, res) => {
