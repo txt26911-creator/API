@@ -32,6 +32,10 @@ db.getConnection((err, connection) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("API funcionando");
+});
+
 
 app.post("/api/register", async (req, res) => {
   const { usuario, password, privilegio, nombre, apellido, telefono } = req.body
